@@ -17,3 +17,24 @@
    2.4 `self.helper(node.right)`
 
    2.5 node.right = leftmost child of node.right, and node becomes left child of leftmost child of node.right
+
+
+### Clone DoublyLinkedList
+
+**Key: keep a prev pointer and a cur pointer**
+
+```Python
+def cloneDoublyList(node):
+    # Assume that start with a head node with no value
+    curPnt = node
+    clonePnt = Node(0)
+    init = clonePnt
+    clonePrev = init
+    
+    while curPnt.next:
+        clonePnt.next = Node(curPnt.next.val)
+        clonePnt = clonePnt.next
+        clonePnt.prev = clonePrev # Key step
+        clonePrev = clonePrev.next # Key step
+        curPnt = curPnt.next
+```
